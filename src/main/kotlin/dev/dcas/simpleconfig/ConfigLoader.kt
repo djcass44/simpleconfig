@@ -37,10 +37,9 @@ class ConfigLoader<T>(private val configSchema: Class<out T>) {
 
     fun load(uri: String): T {
         val data = when {
-            uri.startsWith("http") -> loader.fromUrl(uri)
-            uri.startsWith("/") || uri.startsWith("~") -> loader.fromFilesystem(uri)
+            uri.contains("://") -> loader.fromUrl(uri)
             uri.startsWith("classpath:") -> loader.fromClasspath(uri.split(":")[1])
-            else -> null
+            else -> loader.fromFilesystem(uri)
         } ?: loader.fromClasspath("application.yaml") ?: loader.fromClasspath("application.yml") ?: loader.fromClasspath("application.json")
         return mapper.readValue(data, configSchema)
     }
