@@ -25,6 +25,7 @@ dependencies {
     implementation("com.github.djcass44:log2:3.4")
     implementation("com.github.djcass44:castive-utilities:v3")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.0")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.0")
 
 
     val junitVersion = "5.2.0"
@@ -32,9 +33,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 
+    testImplementation("com.github.stefanbirkner:system-rules:1.19.0")
     testImplementation("org.hamcrest:hamcrest:2.2")
     testImplementation("org.mockito:mockito-core:3.0.0")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation(kotlin("script-runtime"))
 }
 
 tasks {
